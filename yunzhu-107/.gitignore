@@ -1,0 +1,11 @@
+node_modules/
+qa-*.png
+qa.cjs
+plan-*.png
+video-subtitles.srt
+*.tar.gz
+*.zip
+.sites/
+.DS_Store
+
+private-references/

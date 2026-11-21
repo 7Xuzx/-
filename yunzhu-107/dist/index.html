@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#203b35"><meta name="description" content="广州云筑上品107㎡四房，全屋可交互3D设计。精装灰砖搭配浅橡木纹砖，探索属于你的家。">
+  <title>云筑 · 家 | 107㎡ 全屋设计</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' rx='20' fill='%23203b35'/%3E%3Cpath d='M18 39L40 19L62 39V62H46V45H34V62H18Z' fill='%23f0e8d8'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+</head>
+<body>
+  <header class="header">
+    <a class="brand" href="./" aria-label="云筑家首页"><span class="brand-icon">云</span><span>云筑<span class="brand-dot"> · </span>家<small>YUNZHU RESIDENCE</small></span></a>
+    <div class="project-title">广州 · 云筑上品 <span>107㎡ 四房两厅</span></div>
+    <button class="icon-button" id="helpBtn" title="操作帮助" aria-label="操作帮助">?</button>
+  </header>
+  <main class="workspace">
+    <aside class="sidebar">
+      <div class="sidebar-top"><div class="eyebrow">A PLACE TO CALL HOME</div><h1>把理想生活，<br>放进每个角落。</h1><p>精装的底子，自己的温度。</p></div>
+      <div class="section-heading"><h2>空间漫游</h2><span>4 房 · 2 厅 · 2 卫</span></div>
+      <nav class="room-nav" id="roomNav" aria-label="选择空间"></nav>
+      <div class="sidebar-note"><span class="note-symbol">⌑</span><p>保留精装灰砖<br><strong>卧室铺设浅橡木纹砖</strong></p></div>
+      <button class="reference-button" id="referenceBtn"><span>▧</span> 材质示意与设计依据 <span>＋</span></button>
+      <div class="sidebar-footer">为你的家而设计 <span>CONCEPT 01</span></div>
+    </aside>
+    <section class="viewer" aria-label="全屋三维交互视图">
+      <div id="canvasHost"></div><div class="viewport-vignette"></div>
+      <div class="viewer-top"><div class="view-tabs" role="group" aria-label="视图模式"><button class="active" data-mode="overview">◈ 全屋 3D</button><button data-mode="plan">▤ 平面视图</button><button data-mode="walk">◉ 室内漫游</button></div><button id="fullscreenBtn" class="glass-button" title="全屏" aria-label="全屏">⛶</button></div>
+      <div class="view-heading"><span class="eyebrow" id="viewEyebrow">YOUR HOME, IN PERSPECTIVE</span><h2 id="viewTitle">家的全貌</h2><p id="viewDesc">开放的客餐厅，让日常自在相连。</p></div>
+      <div id="labels" aria-hidden="true"></div>
+      <div class="compass" title="示意方位，不代表房屋实际朝向"><span>示意</span><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="27"/><path d="M30 11L37 39L30 34L23 39Z"/></svg></div>
+      <div class="zoom-tools"><button id="zoomIn" title="放大" aria-label="放大">＋</button><button id="zoomOut" title="缩小" aria-label="缩小">−</button><div></div><button id="resetBtn" title="重置视角" aria-label="重置视角">↺</button><button id="screenshotBtn" title="保存效果图" aria-label="保存效果图">▣</button></div>
+      <div class="viewer-bottom"><div class="gesture-hint" id="gestureHint"><span>⤧</span> 拖动旋转 <i>·</i> 滚轮缩放 <i>·</i> 右键平移</div><div class="scene-options"><button id="wallBtn" aria-pressed="false">▥ <span>低墙透视</span></button><button id="labelBtn" aria-pressed="true">⌖ <span>空间标签</span></button></div></div>
+      <div id="walkControls" class="walk-controls" hidden><button data-move="forward" aria-label="向前移动">前进</button><div><button data-move="left" aria-label="向左移动">左移</button><button data-move="back" aria-label="向后移动">后退</button><button data-move="right" aria-label="向右移动">右移</button></div></div>
+      <div class="loading" id="loading"><span class="loading-mark">云</span><h2>家的轮廓，正在展开</h2><p>正在准备全屋 3D 场景…</p></div>
+      <div class="webgl-error" id="webglError" hidden><h2>浏览器暂未启用 3D</h2><p>请开启浏览器硬件加速，或使用新版 Edge / Chrome。你仍可查看平面参考与材质示意。</p><button id="fallbackRef">查看参考资料</button></div>
+      <div class="toast" id="toast" role="status"></div>
+    </section>
+    <aside class="design-panel">
+      <div class="panel-heading"><span class="eyebrow">DESIGN PALETTE</span><h2>家的材质笔记</h2><p>冷暖之间，刚好是家的温度。</p></div>
+      <section class="material-section"><div class="section-heading"><h3>公共区域</h3><span class="tag">精装保留</span></div><button class="material-preview stone-preview" data-reference="stone" aria-label="查看灰色瓷砖材质示意"><span>ORIGINAL FINISH</span></button><div class="material-name">云灰 · 石纹瓷砖 <span class="swatch stone"></span></div><p class="material-description">延续客餐厅的精装地面，灰色石纹与奶油色柜体，保留空间的通透感。</p></section>
+      <section class="material-section"><div class="section-heading"><h3>卧室地面</h3><span class="tag warm">你的选择</span></div><button class="material-preview wood-preview" data-reference="wood" aria-label="查看木纹砖材质示意"><span>WARM OAK</span></button><div class="material-name" id="woodName">浅橡木 · 鱼骨纹砖 <span class="swatch wood"></span></div><p class="material-description">以你提供的浅木色为灵感，让卧室从灰调过渡到温暖。纹理与缝宽为示意。</p><div class="segmented" role="group" aria-label="卧室铺贴方式"><button data-pattern="chevron" class="active">鱼骨拼</button><button data-pattern="straight">直铺</button></div></section>
+      <section class="lighting-section"><div class="section-heading"><h3>光线氛围</h3><span id="lightLabel">柔和日光</span></div><div class="lighting-options"><button id="dayBtn" class="active" aria-pressed="true">☀ 日间</button><button id="nightBtn" aria-pressed="false">☾ 夜间</button></div></section>
+      <div class="design-summary"><span class="summary-line"></span><p>暖白墙面 × 浅橡木 × 云灰石纹<br><strong>现代温润 · 轻盈而有秩序</strong></p></div>
+      <button id="tourBtn" class="primary-button">◉ 开始全屋导览</button>
+      <p class="model-disclaimer">概念设计 · 非实测模型<br>房型按公开户型及视频线索推演，尺寸以现场测量为准。</p>
+    </aside>
+  </main>
+  <dialog id="referenceDialog"><div class="dialog-header"><div><span class="eyebrow">DESIGN REFERENCES</span><h2>从真实的家出发</h2></div><button class="close-dialog" aria-label="关闭">×</button></div><div class="reference-tabs"><button data-ref-tab="stone" class="active">精装灰砖</button><button data-ref-tab="wood">木纹砖</button><button data-ref-tab="layout">户型依据</button><button data-ref-tab="living">客厅参考</button></div><div id="referenceContent"></div></dialog>
+  <dialog id="helpDialog"><div class="dialog-header"><h2>自在探索你的家</h2><button class="close-dialog" aria-label="关闭">×</button></div><div class="help-content"><p><strong>全屋 3D</strong> · 拖动旋转，滚轮缩放，右键或双指平移。点击房间标签定位空间。</p><p><strong>平面视图</strong> · 从正上方了解布局与家具关系。</p><p><strong>室内漫游</strong> · 拖动环顾四周；用 W A S D、方向键或屏幕按钮移动。点击左侧空间可直接切换房间。</p><p><strong>设计对比</strong> · 切换卧室拼法、日夜氛围和墙体高度。右侧入口可查看材质示意。</p><p>家具、房间尺寸及窗位是概念示意。模型不是施工图；107㎡为用户提供的建筑面积，室内与赠送空间未作面积核算。</p></div></dialog>
+  <script type="module" src="./app.js"></script>
+</body></html>
